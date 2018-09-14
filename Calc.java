@@ -9,35 +9,38 @@ class Calc{
 
         //INITIALIZING VARIABLES
 
-        int grade = 0, grades = 0, sum = 0, maxGrade = 0, minGrade = 100;
+        int grade = 0, grades = 0, sum = 0, sumInterval, maxGrade = 0, minGrade = 100;
         double avg;
         String letterGrade;
 
         System.out.println("Enter quiz grades to average them (except highest and lowest score)" + '\n' + "Enter a value that is not between 0 and 100 (inclusive) to exit" + '\n');
 
-        //WHILE LOOP WHICH TAKES IN GRADES
 
-        while(true){
+        //CHECKING FIRST GRADE
+
+        System.out.println("What grade is quiz #" + (grades + 1));
+        grade = scan.nextInt();
+
+        //WHILE LOOP WHICH TAKES IN GRADES
+        while(grade >= 0 && grade <= 100){
+            if(grade < minGrade){
+                minGrade = grade;
+            }
+            if(grade > maxGrade){
+                maxGrade = grade;
+            }
+            sum = sum + grade;
+            grades++;
             System.out.println("What grade is quiz #" + (grades + 1));
             grade = scan.nextInt();
-            if(grade >= 0 && grade <= 100){
-                if(grade < minGrade){
-                    minGrade = grade;
-                }
-                if(grade > maxGrade){
-                    maxGrade = grade;
-                }
-                sum = sum + grade;
-                grades++;
-            } else break;
         }
 
         System.out.println("");
 
         //CALCULATING AVERAGE MINUS MAX AND MIN
 
-        sum = sum - maxGrade - minGrade;
-        avg = ((sum+0.0) / (grades-2));
+        sumInterval = sum - maxGrade - minGrade;
+        avg = ((sumInterval+0.0) / (grades-2));
 
         //LETTER GRADE CALC
 
@@ -63,6 +66,7 @@ class Calc{
             System.out.println("Grades entered: " + grades);
             System.out.println("Max quiz grade: " + maxGrade);
             System.out.println("Min quiz grade: " + minGrade);
+            System.out.println("Sum of non min and max grades "+ sumInterval);
             System.out.println("Grade average: %" + numform.format(avg));
             System.out.println("Letter grade: " + letterGrade);
         }
